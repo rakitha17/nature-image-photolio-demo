@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nature Image Photolio</title>
+  <link rel="icon" type="images/x-icon" href="./icons/r-solid.svg">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    *, ::after, ::before {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: #696969;
+      letter-spacing: 1px;
+      line-height: 1.6;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+      background-color: #FAFAD2;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ANCHOR - navigation section style */
+    nav {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.98);
+      position: fixed !important;
+      overflow: auto;
+      padding-top: 150px;
+      /* display: none; */
+      bottom: 100%;
+      transition: bottom .7s ease-out;
+    }
+    .openMenu {
+      /* display: block; */
+      bottom: 0 !important;
+    }
+
+    nav svg {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      box-sizing: content-box !important;
+      padding: 10px;
+      fill: #ffffff;
+      transition: background-color .5s, fill .5s;
+    }
+    nav svg:hover {
+      background-color: rgba(255, 255, 255, .85) !important;
+      fill: #000 !important;
+      cursor: pointer !important;
+    }
+
+    nav ul {
+      /* position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); */
+      text-align: center !important;
+    }
+
+    nav ul li {
+      list-style-type: none;
+      text-align: center; 
+      line-height: 2 !important;
+      /* transition: all .5s; */
+    }
+    
+
+    nav ul li a {
+      font-size: 40px !important;
+      font-weight: 400 !important;
+      color: #696969 !important;
+      text-decoration: none !important;
+      transition: font-size 1s, text-shadow .5s;
+    }
+    nav ul li a:hover {
+      cursor: pointer;
+      color: #ffffff !important;
+    }
+    .animateLink {
+      font-size: 30px !important;
+      text-shadow: 1px 1px 2px #fff;
+    }
+    
+    /* ANCHOR - PAGE CONTENT style */
+    .container-content {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* ANCHOR - header style */
+    .container-content header div {
+      width: 100%;
+      height: auto;
+    }
+
+    .container-content header div svg {
+      width: 30px;
+      height: 30px;
+      float: right;
+      box-sizing: content-box !important;
+      fill: #505050;
+      padding: 10px;
+      display: block;
+      /* transition: background-color .5s; */
+    }
+    .container-content header div svg:hover {
+      background-color: rgba(0, 0, 0, .18) !important;
+      cursor: pointer;
+    }
+
+    .container-content header div::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .container-content header .text-area {
+      text-align: center !important;
+      margin-bottom: 16px !important;
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container-content header .text-area h1 {
+      font-weight: 300 !important;
+      font-size: 40px !important;
+      margin: 10px 0;
+    }
+
+    .container-content header .text-area p {
+      font-weight: 300 !important;
+    }
+
+    .container-content header .btn-area {
+      width: 100%;
+      text-align: center;
+      padding-top: 16px !important;
+      padding-bottom: 32px !important;
+    }
+
+    .container-content header .btn-area button {
+      padding: 10px 30px;
+      background-color: #696969;
+      border: none;
+      color: #fff;
+      font-size: 15px !important;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500 !important;
+      letter-spacing: 1px;
+      transition: background-color .5s, color .5s, box-shadow .15s ease;
+    }
+    .container-content header .btn-area button:hover {
+      background-color: rgba(105, 105, 105, .35) !important;
+      color: #505050 !important;
+      cursor: pointer;
+    }
+    /* ANCHOR - main style */
+    .row, .column {
+      float: left;
+    }
+    .row {
+      margin-bottom: 150px;
+    }
+    .row::before, .row::after  {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    .row .column {
+      width: 33.33333%;
+      /* float: left; */
+    }
+    .row .column > img {
+      margin-bottom: -7px;
+      vertical-align: middle;
+      border-style: none;
+    }
+    .addPadding {
+      padding: 10px;
+    }
+
+    @media  (max-width: 600px) {
+      .row .column {
+        width: 100%;
+    }
+    }
+    /* ANCHOR - footer style */
+    footer::before {
+      content: 0;
+      clear: both;
+      display: table;
+    }
+    footer {
+      float: left;
+      background-color: hsla(0, 0%, 70%, .15) !important;
+      width: 100%;
+      text-align: center;
+      padding: 50px;
+    }
+
+    footer svg {
+      width: 30px;
+      height: 30px;
+      fill: #696969 !important;
+      margin-right: 10px;
+      transition: opacity .5s;
+    }
+    footer svg:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+
+    footer p {
+      color: #696969 !important;
+      font-size: 15px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- ANCHOR - navigation section -->
+  <nav class="navigation-menu">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" role="button" class="close">
+      <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+    </svg>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ANCHOR - PAGE CONTENT -->
+  <div class="container-content">
+  <!-- ANCHOR - header -->
+    <header>
+      <div role="button" aria-label="navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="open">
+          <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+        </svg>
+      </div>
+      <div class="text-area" role="heading">
+        <h1><b>NATURE PHOTOLIO</b></h1>
+        <p><b>A template created by Rakitha Abeykoon for photographers.</b></p>
+      </div>
+      <div class="btn-area">
+        <button type="button" class="btn" name="change padding for images" onmousedown="changePadding()" onmouseup="removeShadow()">Toggle Grid Padding</button>
+      </div>   
+    </header>
+
+    <!-- ANCHOR - main -->
+    <main class="row">
+      <div class="column">
+        <img src="./assets/trees-g8dc11c3a2_1280.jpg" class="images" style="width: 100%;">
+        <img src="./assets/schrecksee-gba9ebf786_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/ireland-gd13889fd5_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/desert-g15d79d6e9_1920.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/adult-ga1937b372_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/forest-g3a357570c_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/flowers-ge0fd9ba52_1920.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/siblings-g3e4c3d856_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/ferns-gc626126cc_1920.jpg" class="images" alt="" style="width: 100%;">
+      </div>
+      <div class="column">
+        <img src="./assets/tree-g4f6be2385_1920.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/yoga-ga38113411_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/leaves-g23a8ef217_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/girl-ga92dd96f7_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/fox-ga90e58bb5_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/spiderweb-g6e6d6495d_1920.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/sunset-g338f6003e_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/bird-g09cfe95b0_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/woman-g377969317_1280.jpg" class="images" alt="" style="width: 100%;">
+      </div>
+      <div class="column">
+        <img src="./assets/owl-gca6aa9dea_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/leaves-ge0cb7430c_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/sunset-g95a649a6a_1920.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/flowers-g8da462708_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/flower-g45b3ccb0a_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/sign-post-g8af9fb6f6_1920.png" class="images" alt="" style="width: 100%;">
+        <img src="./assets/anemone-g99594be5b_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/alpine-g037d9441f_1920.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/sunset-g9b078be70_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/autumn-g64f2e6bc2_1280.jpg" class="images" alt="" style="width: 100%;">
+        <img src="./assets/red-deer-gf3b9d8d78_1280.jpg" class="images" alt="" style="width: 100%;">
+      </div>
+    </main>
+  </div>
+
+  <!-- ANCHOR - footer -->
+  <footer>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+      <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+      <path d="M204 6.5C101.4 6.5 0 74.9 0 185.6 0 256 39.6 296 63.6 296c9.9 0 15.6-27.6 15.6-35.4 0-9.3-23.7-29.1-23.7-67.8 0-80.4 61.2-137.4 140.4-137.4 68.1 0 118.5 38.7 118.5 109.8 0 53.1-21.3 152.7-90.3 152.7-24.9 0-46.2-18-46.2-43.8 0-37.8 26.4-74.4 26.4-113.4 0-66.2-93.9-54.2-93.9 25.8 0 16.8 2.1 35.4 9.6 50.7-13.8 59.4-42 147.9-42 209.1 0 18.9 2.7 37.5 4.5 56.4 3.4 3.8 1.7 3.4 6.9 1.5 50.4-69 48.6-82.5 71.4-172.8 12.3 23.4 44.1 36 69.3 36 106.2 0 153.9-103.5 153.9-196.8C384 71.3 298.2 6.5 204 6.5z"/>
+    </svg>
+    <p>Powered by Rakitha Abeykoon</p>
+  </footer>
+  
+  <script>
+
+    const nav = document.querySelector("nav");
+    const open = document.querySelector(".open");
+    const close = document.querySelector(".close");
+
+    function openMenu() {
+      nav.classList.add("openMenu");
+    }
+    function closeMenu() {
+      nav.classList.remove("openMenu");
+    }
+
+    open.addEventListener("click", openMenu);
+    close.addEventListener("click", closeMenu);
+
+    const links = Array.from(document.getElementsByTagName("a"));
+
+    function linkEffect(e) {
+      // console.log(e);
+      e.target.classList.add("animateLink");
+    }
+    function removeEffect(e) {
+      e.target.classList.remove("animateLink");
+    }
+
+    links.forEach(link => {
+      link.addEventListener("transitionend", removeEffect);
+    });
+    links.forEach(link => {
+      link.addEventListener("click", linkEffect);
+    });
+
+    let btn = document.querySelector(".btn");
+
+    function changePadding() {
+      let images = document.querySelectorAll(".images");
+
+      btn.style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)";
+
+      images.forEach((image) => {
+        if(!image.style.padding) {
+          image.classList.toggle("addPadding");
+        }
+        else {
+          image.style.padding = 0;
+        }
+      })
+    }
+    function removeShadow() {
+      btn.style.boxShadow = "none";
+      btn.style.backgroundColor = "#696969";
+      btn.style.color = "#fff";
+    }
+  </script>
+
+</body>
+</html>
